@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>DataCafé|Finca</title>
+  <meta name="description" content="Seguimiento del cultivo de café en la finca: lotes, controles, recolección, bodega, catación y salidas. Funciona sin internet.">
+  <meta name="theme-color" content="#2F5D3A">
+  <link rel="manifest" href="./manifest.webmanifest">
+  <link rel="icon" href="./icons/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="./icons/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>.desk{display:none}</style>
+  <link rel="stylesheet" href="./css/styles.css?v=0.1.0">
+  <script>
+    // Aplica tema y tamaño de letra antes de pintar, para evitar parpadeos.
+    (function () {
+      try {
+        var tema = localStorage.getItem('dcf-tema') || 'auto';
+        var escala = localStorage.getItem('dcf-escala') || '1';
+        if (tema !== 'auto') document.documentElement.setAttribute('data-theme', tema);
+        document.documentElement.style.setProperty('--scale', escala);
+      } catch (e) {}
+    })();
+  </script>
+</head>
+<body>
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <defs>
+      <symbol id="i-home" viewBox="0 0 24 24"><path d="M3 11l9-7 9 7v9a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1z"/></symbol>
+      <symbol id="i-leaf" viewBox="0 0 24 24"><path d="M5 19c0-8 5-14 15-15-1 10-7 15-15 15z"/><path d="M5 19c3-4 6-7 10-10"/></symbol>
+      <symbol id="i-map" viewBox="0 0 24 24"><path d="M3 6l6-2 6 2 6-2v14l-6 2-6-2-6 2z"/><path d="M9 4v14M15 6v14"/></symbol>
+      <symbol id="i-spray" viewBox="0 0 24 24"><path d="M8 10h6v10a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1z"/><path d="M9 10V7h4v3M13 7h3l1-2"/><path d="M18 9h.01M20 7h.01M20 11h.01"/></symbol>
+      <symbol id="i-basket" viewBox="0 0 24 24"><path d="M3 10h18l-2 9a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1z"/><path d="M8 10l3-6M16 10l-3-6"/><path d="M9 14v3M15 14v3M12 14v3"/></symbol>
+      <symbol id="i-users" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c.5-4 3-6 6.5-6s6 2 6.5 6"/><path d="M16 4.5a3.5 3.5 0 0 1 0 7M18 14c2 .7 3.2 2.6 3.5 6"/></symbol>
+      <symbol id="i-box" viewBox="0 0 24 24"><path d="M3 7l9-4 9 4-9 4-9-4z"/><path d="M3 7v10l9 4 9-4V7"/><path d="M12 11v10"/></symbol>
+      <symbol id="i-cup" viewBox="0 0 24 24"><path d="M4 9h13v5a6 6 0 0 1-6 6h-1a6 6 0 0 1-6-6z"/><path d="M17 11h1.5a2.5 2.5 0 0 1 0 5H17"/><path d="M8 3c0 1.5 1.5 1.5 1.5 3M12 3c0 1.5 1.5 1.5 1.5 3"/></symbol>
+      <symbol id="i-cup-plain" viewBox="0 0 24 24"><path d="M4 9h13v5a6 6 0 0 1-6 6h-1a6 6 0 0 1-6-6z"/><path d="M17 11h1.5a2.5 2.5 0 0 1 0 5H17"/></symbol>
+      <symbol id="i-truck" viewBox="0 0 24 24"><path d="M2 6h11v10H2zM13 9h4l4 4v3h-8z"/><circle cx="6" cy="18" r="1.8"/><circle cx="17" cy="18" r="1.8"/></symbol>
+      <symbol id="i-cash" viewBox="0 0 24 24"><rect x="2.5" y="6" width="19" height="12" rx="2"/><circle cx="12" cy="12" r="2.5"/><path d="M6 9.5v.01M18 14.5v.01"/></symbol>
+      <symbol id="i-alert" viewBox="0 0 24 24"><path d="M12 3l9.5 17h-19z"/><path d="M12 10v4M12 17v.01"/></symbol>
+      <symbol id="i-chart" viewBox="0 0 24 24"><path d="M4 20V4M4 20h16"/><path d="M8 16v-4M12 16V8M16 16v-6"/></symbol>
+      <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+      <symbol id="i-back" viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></symbol>
+      <symbol id="i-close" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></symbol>
+      <symbol id="i-chevron" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></symbol>
+      <symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12l5 5 9-10"/></symbol>
+      <symbol id="i-settings" viewBox="0 0 24 24"><path d="M4 7h10M18 7h2M4 17h4M12 17h8"/><circle cx="16" cy="7" r="2"/><circle cx="10" cy="17" r="2"/></symbol>
+      <symbol id="i-warehouse" viewBox="0 0 24 24"><path d="M3 21V9l9-5 9 5v12"/><path d="M7 21v-8h10v8"/></symbol>
+      <symbol id="i-bean" viewBox="0 0 24 24"><ellipse cx="12" cy="12" rx="6" ry="8.5" transform="rotate(30 12 12)"/><path d="M9 6.5c3 3 0 8 4 11"/></symbol>
+      <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4.5 4.5"/></symbol>
+      <symbol id="i-phone" viewBox="0 0 24 24"><rect x="7" y="3" width="10" height="18" rx="2"/><path d="M11 18h2"/></symbol>
+      <symbol id="i-edit" viewBox="0 0 24 24"><path d="M4 20h4L19 9l-4-4L4 16z"/><path d="M13.5 6.5l4 4"/></symbol>
+      <symbol id="i-share" viewBox="0 0 24 24"><circle cx="18" cy="5" r="2.5"/><circle cx="6" cy="12" r="2.5"/><circle cx="18" cy="19" r="2.5"/><path d="M8.2 10.8l7.6-4.4M8.2 13.2l7.6 4.4"/></symbol>
+      <symbol id="i-download" viewBox="0 0 24 24"><path d="M12 4v11M7 10l5 5 5-5"/><path d="M5 20h14"/></symbol>
+      <symbol id="i-upload" viewBox="0 0 24 24"><path d="M12 20V9M7 14l5-5 5 5"/><path d="M5 4h14"/></symbol>
+      <symbol id="i-trash" viewBox="0 0 24 24"><path d="M4 7h16M9 7V4h6v3M6 7l1 13h10l1-13"/></symbol>
+    </defs>
+  </svg>
+
+  <a class="skip" href="#app">Saltar al contenido</a>
+  <main id="app" tabindex="-1"></main>
+
+  <nav class="nav" id="nav" aria-label="Menú principal">
+    <div class="nav-brand desk"><span>DataCafé<span class="pipe">|</span></span><span class="lab">Finca</span></div>
+    <a href="#/inicio" data-tab="inicio"><svg class="ic"><use href="#i-home"/></svg><span>Inicio</span></a>
+    <a href="#/lotes" data-tab="lotes"><svg class="ic"><use href="#i-leaf"/></svg><span>Lotes</span></a>
+    <a href="#/controles" data-tab="controles"><svg class="ic"><use href="#i-spray"/></svg><span>Controles</span></a>
+    <a href="#/recoleccion" data-tab="recoleccion"><svg class="ic"><use href="#i-basket"/></svg><span>Recolección</span></a>
+    <a href="#/bodega" data-tab="bodega"><svg class="ic"><use href="#i-warehouse"/></svg><span>Bodega</span></a>
+    <div class="nav-sep desk" role="presentation"></div>
+    <a href="#/recolectores" data-tab="recolectores" class="desk"><svg class="ic"><use href="#i-users"/></svg><span>Recolectores</span></a>
+    <a href="#/catacion" data-tab="catacion" class="desk"><svg class="ic"><use href="#i-cup"/></svg><span>Catación</span></a>
+    <a href="#/salidas" data-tab="salidas" class="desk"><svg class="ic"><use href="#i-truck"/></svg><span>Salidas</span></a>
+    <a href="#/ajustes" data-tab="ajustes" class="desk"><svg class="ic"><use href="#i-settings"/></svg><span>Ajustes</span></a>
+    <div class="nav-foot desk"><svg class="ic ic-sm"><use href="#i-phone"/></svg>Datos guardados en este equipo</div>
+  </nav>
+
+  <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+
+  <noscript><p style="padding:1rem">DataCafé|Finca necesita JavaScript para funcionar.</p></noscript>
+  <script type="module" src="./js/app.js?v=0.1.0"></script>
+</body>
+</html>
