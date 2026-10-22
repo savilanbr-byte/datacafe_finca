@@ -1,6 +1,6 @@
 // Punto de entrada: carga los datos, enruta según la dirección (#/...) y registra el modo sin conexión.
 import { loadAll } from './db.js';
-import { getParams, toast } from './ui.js';
+import { getParams, toast, ajustarNumeros } from './ui.js';
 import * as inicio from './views/inicio.js';
 import * as lotes from './views/lotes.js';
 import * as loteFicha from './views/lote.js';
@@ -59,6 +59,12 @@ async function init() {
   await loadAll();
   window.addEventListener('hashchange', render);
   ancho.addEventListener('change', render);
+  // Cada vez que cambia algo en pantalla (o el tamaño, o terminan de cargar las letras), se revisan las cifras grandes.
+  let pendiente = false;
+  const ajustar = () => { if (pendiente) return; pendiente = true; requestAnimationFrame(() => { pendiente = false; ajustarNumeros(app); }); };
+  new MutationObserver(ajustar).observe(app, { childList: true, subtree: true, characterData: true });
+  window.addEventListener('resize', ajustar);
+  if (document.fonts) document.fonts.ready.then(ajustar);
   if (!location.hash) history.replaceState(null, '', '#/inicio');
   render();
   registerSW();

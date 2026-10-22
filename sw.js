@@ -2,7 +2,7 @@
 // Cada versión se guarda completa y por separado. Para publicar una versión nueva usa: node scripts/version.mjs 0.2.0
 // Ojo: el dominio savilanbr-byte.github.io lo comparten varias apps de DataCafé, así que solo se borran
 // las cachés viejas de esta app (las que empiezan por "datacafe-finca-").
-const CACHE = 'datacafe-finca-v0.1.0';
+const CACHE = 'datacafe-finca-v0.1.1';
 const PREFIJO = 'datacafe-finca-';
 const FONTS = 'datacafe-fonts-v1';
 

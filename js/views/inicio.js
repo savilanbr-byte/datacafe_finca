@@ -74,7 +74,7 @@ export async function render(root) {
         <div class="small" style="opacity:.92">${t.nRecogidas} ${t.nRecogidas === 1 ? 'recogida' : 'recogidas'} · ${fmtCOP(t.valorMes)} en recolección${dif !== null ? ` · ${dif >= 0 ? '+' : ''}${dif}% frente al mes pasado` : ''}</div>
       </a>
 
-      <div class="grid-2 span-2">
+      <div class="grid-fit span-2">
         <a class="card" href="#/lotes?vista=productividad">
           <div class="small muted">Productividad del mes</div>
           <div class="mid-num">${t.prodMes !== null ? fmtNum(t.prodMes, 0) : '—'} <small>kg/ha</small></div>

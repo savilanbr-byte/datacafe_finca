@@ -127,4 +127,19 @@ export function tabs(items) {
 export function pref(k, def) { try { return localStorage.getItem('dcf-' + k) ?? def; } catch (e) { return def; } }
 export function setPref(k, v) { try { localStorage.setItem('dcf-' + k, v); } catch (e) { /* sin almacenamiento */ } }
 
+/**
+ * Baja el tamaño de las cifras grandes (.big-num, .mid-num) que no caben en su recuadro,
+ * por ejemplo "$2.884.000" en un celular angosto o con letra grande.
+ */
+export function ajustarNumeros(root = document) {
+  root.querySelectorAll('.big-num, .mid-num').forEach((el) => {
+    if (el.dataset.fs === undefined) el.dataset.fs = el.style.fontSize || '';
+    el.style.fontSize = el.dataset.fs;
+    for (let i = 0; i < 3 && el.clientWidth && el.scrollWidth > el.clientWidth + 1; i++) {
+      const base = parseFloat(getComputedStyle(el).fontSize);
+      el.style.fontSize = Math.max(base * 0.5, (base * el.clientWidth * 0.97) / el.scrollWidth) + 'px';
+    }
+  });
+}
+
 export const norm = (s) => String(s || '').toLocaleLowerCase('es').normalize('NFD').replace(/[̀-ͯ]/g, '').trim();

@@ -1,1 +1,1 @@
-{"name":"datacafe-finca","version":"0.1.0","type":"module","private":true,"scripts":{"test":"node --test tests/*.test.mjs","start":"npx serve ."}}
+{"name":"datacafe-finca","version":"0.1.1","type":"module","private":true,"scripts":{"test":"node --test tests/*.test.mjs","start":"npx serve ."}}

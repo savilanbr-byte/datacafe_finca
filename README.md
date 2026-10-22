@@ -2,7 +2,7 @@
 
 App para que productores y productoras de café lleven en su finca el registro de **lotes, controles y labores, recolección, pago a recolectores, café en bodega, catación y salidas**. Botones grandes, lenguaje sencillo y **funciona sin internet**.
 
-Es un prototipo de **Sancocho Glorioso** (versión 0.1.0), cuarta app de la familia DataCafé.
+Es un prototipo de **Sancocho Glorioso** (versión 0.1.1), cuarta app de la familia DataCafé.
 
 👉 **Probar la app:** https://savilanbr-byte.github.io/datacafe_finca/
 
